@@ -1,21 +1,16 @@
 pipeline {
     agent any
-    parameters {
-        stashedFile(name: 'script.jmx', description: 'Arquivo JMeter (.jmx)')
-        stashedFile(name: 'datapool.csv', description: 'Arquivo Datapool')
-    }
     stages {
         stage('Executar Teste e Gera Relatorio') {
             steps {
                 script {
-                    unstash 'script.jmx'
-                    unstash 'datapool.csv'
+                   
                     try {
                 
                        
 
                         sh """
-                        jmeter -n -t script.jmx \
+                        jmeter -n -t jmeter/script.jmx \
                         -l report${env.BUILD_NUMBER}.jtl \
                         -e -o report${env.BUILD_NUMBER}
                         """
