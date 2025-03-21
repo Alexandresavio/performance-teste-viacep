@@ -1,0 +1,26 @@
+version: '3.8'
+
+services:
+  jenkins:
+    build: .
+    container_name: jenkins-server
+    restart: always
+    ports:
+      - '8080:8080'
+      - '50000:50000'
+    environment:
+      - JAVA_OPTS=-Djenkins.install.runSetupWizard=false
+    volumes:
+      - jenkins_home:/var/jenkins_home
+      - ./admin.groovy:/usr/share/jenkins/ref/init.groovy.d/admin.groovy
+      - /var/run/docker.sock:/var/run/docker.sock  # Permite que Jenkins use Docker
+    networks:
+      - jenkins-network
+
+volumes:
+  jenkins_home:
+    driver: local
+
+networks:
+  jenkins-network:
+    driver: bridge

@@ -1,0 +1,43 @@
+pipeline {
+    agent any
+
+    environment {
+        JMETER_IMAGE = "justb4/jmeter:latest"
+        TEST_PLAN = "test.jmx"
+        RESULTS_DIR = "results"
+        REPORT_DIR = "report"
+    }
+
+    stages {
+        stage('Preparação') {
+            steps {
+                script {
+                    sh "mkdir -p ${RESULTS_DIR} ${REPORT_DIR}"
+                }
+            }
+        }
+
+        stage('Executar Teste de Performance') {
+            steps {
+                script {
+                    sh """
+                        docker run --rm -v \$(pwd):/test -w /test ${JMETER_IMAGE} \\
+                        jmeter -n -t ${TEST_PLAN} -l ${RESULTS_DIR}/results.jtl -e -o ${REPORT_DIR}
+                    """
+                }
+            }
+        }
+
+        stage('Publicar Relatório') {
+            steps {
+                publishHTML(target: [
+                    reportName: 'JMeter Report',
+                    reportDir: REPORT_DIR,
+                    reportFiles: 'index.html',
+                    alwaysLinkToLastBuild: true,
+                    keepAll: true
+                ])
+            }
+        }
+    }
+}
