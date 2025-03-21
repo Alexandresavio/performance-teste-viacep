@@ -1,42 +1,31 @@
 pipeline {
     agent any
-
-    environment {
-        JMETER_IMAGE = "justb4/jmeter:latest"
-        TEST_PLAN = "test.jmx"
-        RESULTS_DIR = "results"
-        REPORT_DIR = "report"
+    parameters {
+        stashedFile(name: 'script.jmx', description: 'Arquivo JMeter (.jmx)')
+        stashedFile(name: 'datapool.csv', description: 'Arquivo Datapool')
     }
-
     stages {
-        stage('Preparação') {
+        stage('Executar Teste e Gera Relatorio') {
             steps {
                 script {
-                    sh "mkdir -p ${RESULTS_DIR} ${REPORT_DIR}"
-                }
-            }
-        }
+                    unstash 'script.jmx'
+                    unstash 'datapool.csv'
+                    try {
+                
+                       
 
-        stage('Executar Teste de Performance') {
-            steps {
-                script {
-                    sh """
-                        docker run --rm -v \$(pwd):/test -w /test ${JMETER_IMAGE} \\
-                        jmeter -n -t ${TEST_PLAN} -l ${RESULTS_DIR}/results.jtl -e -o ${REPORT_DIR}
-                    """
-                }
-            }
-        }
+                        sh """
+                        jmeter -n -t script.jmx \
+                        -l report${env.BUILD_NUMBER}.jtl \
+                        -e -o report${env.BUILD_NUMBER}
+                        """
 
-        stage('Publicar Relatório') {
-            steps {
-                publishHTML(target: [
-                    reportName: 'JMeter Report',
-                    reportDir: REPORT_DIR,
-                    reportFiles: 'index.html',
-                    alwaysLinkToLastBuild: true,
-                    keepAll: true
-                ])
+                        echo "Teste concluído com sucesso"
+                    } catch (Exception e) {
+                        echo "Teste falhou: ${e.getMessage()}"
+                        error("Falha na execução do teste")
+                    }
+                }
             }
         }
     }
