@@ -35,12 +35,12 @@ Utilize as seguintes credenciais padrão:
 10. Em **Repositoriy URL** cole está URL **https://github.com/Alexandresavio/prova-sicredi-performance-teste-viacep.git**. Ela está com pública, não precisa de credenciais.
 11. Em **Branch Specifier** coloque como **main**
 12. Em **Script Path** coloque **pipeline/Jenkinsfile**
-13. Clique em **Salvar**.
+13. Clique em **Salvar**.    
+Agora o Jenkins estará executando os testes de performance conforme configurado. 
 
 ### 4. Executando o Teste
-1. Clique em **Construir agora**. A primeira execução pode falhar devido à sensibilização das configurações.
-2. Atualize a página.
-3. Clique em **Construir com parâmetros**.
-4. Clique em **Construir**.
+1. Clique em **Construir agora**.
+2. Após finalizar o teste clique em workspace.
+3. Clique no path do wokspace /var/jenkins_home/workspace/Teste performance/Executar Teste
+4. Clique na pasta report e faça download dos relatórios.
 
-Agora o Jenkins estará executando os testes de performance conforme configurado. 
