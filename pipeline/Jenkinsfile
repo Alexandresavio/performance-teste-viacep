@@ -1,20 +1,23 @@
 pipeline {
     agent any
     stages {
-        stage('Executar Teste e Gera Relatorio') {
+        stage('Cleanup') {
             steps {
                 script {
-                   
-                    try {
-                
-                       
+                    sh 'rm -rf report*.jtl report*'  // Remove arquivos .jtl e pastas de relatórios antigas
+                }
+            }
+        }
 
+        stage('Executar Teste e Gerar Relatório') {
+            steps {
+                script {
+                    try {
                         sh """
                         jmeter -n -t jmeter/script.jmx \
                         -l report${env.BUILD_NUMBER}.jtl \
                         -e -o report${env.BUILD_NUMBER}
                         """
-
                         echo "Teste concluído com sucesso"
                     } catch (Exception e) {
                         echo "Teste falhou: ${e.getMessage()}"
