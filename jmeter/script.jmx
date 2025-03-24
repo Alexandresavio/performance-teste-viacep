@@ -87,15 +87,6 @@
           <stringProp name="RandomTimer.range">900</stringProp>
         </UniformRandomTimer>
         <hashTree/>
-        <ConstantThroughputTimer guiclass="TestBeanGUI" testclass="ConstantThroughputTimer" testname="Constant Throughput Timer">
-          <intProp name="calcMode">1</intProp>
-          <doubleProp>
-            <name>throughput</name>
-            <value>16.67</value>
-            <savedValue>0.0</savedValue>
-          </doubleProp>
-        </ConstantThroughputTimer>
-        <hashTree/>
         <ResultCollector guiclass="ViewResultsFullVisualizer" testclass="ResultCollector" testname="View Results Tree">
           <boolProp name="ResultCollector.error_logging">false</boolProp>
           <objProp>
