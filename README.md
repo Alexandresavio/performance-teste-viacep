@@ -32,7 +32,7 @@ Utilize as seguintes credenciais padrão:
 7. Clique em **Tudo certo**.
 8. Role a página até a opção **Pipeline** e na opção **Definition** selecione **Pipeline script from SCM**.
 9. Em **SCM** selecione **Git**.
-10. Em **Repositoriy URL** cole está URL **https://github.com/Alexandresavio/prova-sicredi-performance-teste-viacep.git**. Ela está com pública, não precisa de credenciais.
+10. Em **Repositoriy URL** cole está URL **https://github.com/Alexandresavio/performance-teste-viacep.git**. Ela está com pública, não precisa de credenciais.
 11. Em **Branch Specifier** coloque como **main**
 12. Em **Script Path** coloque **pipeline/Jenkinsfile**
 13. Clique em **Salvar**.    
