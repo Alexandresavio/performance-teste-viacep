@@ -1,3 +1,33 @@
+# Desafio de Teste de Performance de API
+
+## Contexto
+Você está em um time ágil. Foi priorizado pelo Product Owner (P.O.) a construção de uma API para consulta de CEPs do Brasil. O processo já passou pelas fases de refinamento, planejamento, desenvolvimento e testes funcionais. Agora, está nas suas mãos a responsabilidade de construir e executar os testes de performance desta aplicação.
+
+Sugerimos a utilização da ferramenta **JMeter**. Os componentes utilizados para atender aos requisitos são de livre escolha.
+
+## Requisitos
+Durante o refinamento com o time e a área de negócio, foi informado que a aplicação terá um pico de utilização no quinto dia útil do mês. São esperados **1000 acessos por hora no período da manhã**, com o pico sendo atingido em **30 minutos**, mantendo-se estável até o final da manhã e reduzindo gradualmente até o final do dia.
+
+A aplicação possui **duas operações**:
+- Consulta pelo **código do CEP** (60% do uso)
+- Busca pelo **endereço** (40% do uso)
+
+A documentação e exemplos de utilização da API podem ser obtidos em: [ViaCEP](https://viacep.com.br)
+
+## Objetivo
+O objetivo deste desafio é criar um **projeto de performance** com as seguintes configurações e requisitos mínimos:
+
+1. **Ramp up** de 30 minutos;
+2. **Steady State** de 60 minutos;
+3. **Think time** randômico entre os requests, variando de **100ms a 1000ms**;
+4. **Pacing** de **1000 requests por hora** durante o período de steady state;
+5. Utilize **datapools** ou outra forma de geração de dados para criar uma massa de dados variável durante a execução do teste de performance.
+
+## Extra
+Crie uma **pipeline declarativa no Jenkins**, que:
+- Orquestrará a execução do teste;
+- Exportará os resultados da execução em **HTML**.
+
 # Configuração do Jenkins com Docker para Testes de Performance
 
 ## Requisitos
