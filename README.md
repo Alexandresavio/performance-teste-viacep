@@ -1,10 +1,11 @@
-# Desafio de Teste de Performance de API
+# Desafio Teste de Performance de API
 
 ## Contexto
 Você está em um time ágil. Foi priorizado pelo Product Owner (P.O.) a construção de uma API para consulta de CEPs do Brasil. O processo já passou pelas fases de refinamento, planejamento, desenvolvimento e testes funcionais. Agora, está nas suas mãos a responsabilidade de construir e executar os testes de performance desta aplicação.
 
 Sugerimos a utilização da ferramenta **JMeter**. Os componentes utilizados para atender aos requisitos são de livre escolha.
 
+## Definição do escopo do teste
 ## Requisitos
 Durante o refinamento com o time e a área de negócio, foi informado que a aplicação terá um pico de utilização no quinto dia útil do mês. São esperados **1000 acessos por hora no período da manhã**, com o pico sendo atingido em **30 minutos**, mantendo-se estável até o final da manhã e reduzindo gradualmente até o final do dia.
 
