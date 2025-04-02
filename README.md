@@ -29,7 +29,7 @@ Crie uma **pipeline declarativa no Jenkins**, que:
 - Orquestrará a execução do teste;
 - Exportará os resultados da execução em **HTML**.
 
-# Configuração do Jenkins com Docker para Testes de Performance
+## Configuração do Jenkins com Docker para Testes de Performance
 
 ## Requisitos
 - **Docker Desktop** instalado na máquina
